@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+          content="Diff-Restorer is a universal image restoration method with diffusion prior.">
+    <meta name="keywords" content="Image Restoration, Diffusion model, Stable Diffusion">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diff-Restorer: Unleashing Visual Prompts for Diffusion-based Universal Image Restoration</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="../static/css/bulma.min.css">
+  <link rel="stylesheet" href="../static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="../static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="../static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <link rel="icon" href="./images/logo.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="../static/js/fontawesome.all.min.js"></script>
+  <script src="../static/js/bulma-carousel.min.js"></script>
+  <script src="../static/js/bulma-slider.min.js"></script>
+  <script src="../static/js/index.js"></script>
+
+  <!-- Vendor Stylesheets -->
+  <!--=================js==========================-->
+  <link rel="stylesheet" href="../static/css/tab_gallery.css">
+  <link rel="stylesheet" href="../static/css/juxtapose.css">
+  <!-- <script src="../static/js/index.js"></script> -->
+  <!-- <link rel="stylesheet" href="./menlo"> -->
+  <link rel="stylesheet" href="../static/css/image_card_fader.css">
+  <link rel="stylesheet" href="../static/css/image_card_slider.css">
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Diff-Restorer: Unleashing Visual Prompts for Diffusion-based Universal Image Restoration</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://keunhong.com">Yuhong Zhang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Hengsheng Zhang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              Zhengxue Cheng</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Rong Xie</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://medialab.sjtu.edu.cn/author/li-song/">Li Song</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              Wenjun Zhang</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Shanghai Jiao Tong University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zyhrainbow/Diff-Restorer"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                  </a>
+              </span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--=================Teasers==========================-->
+<section class="hero teaser"></section>
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div  style="text-align:center; vertical-align:middle">
+        <img src="./images/Visual.png" width="100%">
+      </div>
+      <h2 class="subtitle has-text-centered">
+        Our <span class="dnerf">Diff-Restorer</span> model demonstrates remarkable restoration results on the restoration tasks with single degradation, real-world degradation, and
+        mixed degradation. Diff-Restorer can adaptively handle various degradation types.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Image restoration is a classic low-level problem
+            aimed at recovering high-quality images from low-quality images
+            with various degradations such as blur, noise, rain, haze, etc.
+            However, due to the inherent complexity and non-uniqueness
+            of degradation in real-world images, it is challenging for a
+            model trained for single tasks to handle real-world restoration
+            problems effectively. Moreover, existing methods often suffer
+            from over-smoothing and lack of realism in the restored results.
+            To address these issues, we propose Diff-Restorer, a universal
+            image restoration method based on the diffusion model, aiming
+            to leverage the prior knowledge of Stable Diffusion to remove
+            degradation while generating high perceptual quality restoration
+            results. Specifically, we utilize the pre-trained visual language
+            model to extract visual prompts from degraded images, including
+            semantic and degradation embeddings. The semantic embeddings
+            serve as content prompts to guide the diffusion model for
+            generation. In contrast, the degradation embeddings modulate
+            the Image-guided Control Module to generate spatial priors for
+            controlling the spatial structure of the diffusion process, ensuring
+            faithfulness to the original image. Additionally, we design a
+            Degradation-aware Decoder to perform structural correction and
+            convert the latent code to the pixel domain. We conducted comprehensive qualitative and quantitative analysis on restoration
+            tasks with different degradations, demonstrating the effectiveness
+            and superiority of our approach.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Method. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <div  style="text-align:center; vertical-align:middle">
+            <img src="./images/overview.png" width="100%">
+          </div>
+          <div align="center">
+            <b>Overview of the architecture of Diff-Restorer. </b>
+          </div>
+          <p>
+            CLIP Image Encoder and Prompt Processor are used to extract visual prompts, which include semantic
+            embedding and degradation embedding. A Image-guided Control Module modulated with degradation embedding is used to provide control information. The
+            pre-trained denoising U-Net utilizes control information and semantic embedding as conditions to denoise. After multiple denoising steps, the latent features
+            are generated and subsequently transformed into high-quality restored images by the Degradation-aware Decoder.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Results</h2>
+        <h3 class="title is-4">Single degradation restoration results</h3>
+        <div class="content has-text-justified">
+          <div  style="text-align:center; vertical-align:middle">
+            <img src="./images/single.png" width="100%">
+          </div>
+          <div align="center">
+            <b> Qualitative comparison of different methods on the eight single degradation restoration tasks. </b>
+          </div>
+        </div>
+
+        <!--/ Interpolating. -->
+        <h3 class="title is-4">Real-world degradation restoration results</h3>
+        <div class="content has-text-justified">
+          <div  style="text-align:center; vertical-align:middle">
+            <img src="./images/real.png" width="100%">
+          </div>
+          <div align="center">
+            <b> Qualitative comparison of different methods on real-world restoration tasks. </b>
+          </div>
+        </div>
+
+        <h3 class="title is-4">Mixed degradation restoration results</h3>
+        <div class="content has-text-justified">
+          <div  style="text-align:center; vertical-align:middle"></div>
+            <img src="./images/mixed.png" width="100%">
+          </div>
+          <div align="center">
+            <b> Qualitative comparison of different methods on mixed degradation restoration tasks. </b>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Results. -->
+   
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{zhang2024diffrestorerunleashingvisualprompts,
+      title={Diff-Restorer: Unleashing Visual Prompts for Diffusion-based Universal Image Restoration}, 
+      author={Yuhong Zhang and Hengsheng Zhang and Xinning Chai and Zhengxue Cheng and Rong Xie and Li Song and Wenjun Zhang},
+      year={2024},
+      eprint={2407.03636},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2407.03636}, 
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/abs/2407.03636">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/zyhrainbow/Diff-Restorer" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            Website adapted from the following <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  
+  </div>
+</footer>
+
+
+</body>
+</html>
