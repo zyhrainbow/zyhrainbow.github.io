@@ -170,8 +170,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Realistic image restoration is a crucial task in computer vision, and diffusion-based models for image restoration has garnered significant attention due to their ability to produce realistic results. 
-            However, due to the severity of image degradation and the uncontrollability of the diffusion model, diffusion-based restoration methods still have many challenges in the perceptual quality, semantic fidelity, and structure accuracy. To address these challenges, we introduce a novel image restoration method, SSP-IR. Following the principle of ``reconstruction as conditional generation", our approach aims to fully exploit semantic and structure priors from low-quality images to guide the diffusion model to generate semantically faithful and structurally accurate natural restoration results. Specifically, we integrate the visual comprehension capabilities of Multimodal Large Language Models (explicit) and the visual representations of the original image (implicit) to acquire accurate semantic prior. To extract degradation-agnostic structure prior, we introduce a Processor with RGB and FFT constrains to extract structure prior from the low-quality images, guiding the diffusion model and preventing the generation of unreasonable artifacts. Lastly, we employ a multi-level attention mechanism to integrate the acquired semantic and structure priors. The qualitative and quantitative results demonstrate that our method outperforms other state-of-the-art methods overall on both synthetic and real-world datasets.
+            Realistic image restoration is a crucial task in computer vision, and diffusion-based models for image restoration have garnered significant attention due to their ability to produce realistic results. Restoration can be seen as a controllable generation conditioning on priors. However, due to the severity of image degradation, existing diffusion-based restoration methods cannot fully exploit priors from low-quality images and still have many challenges in perceptual quality, semantic fidelity, and structure accuracy. Based on the challenges, we introduce a novel image restoration method, SSP-IR. Our approach aims to fully exploit semantic and structure priors from low-quality images to guide the diffusion model in generating semantically faithful and structurally accurate natural restoration results. Specifically, we integrate the visual comprehension capabilities of Multimodal Large Language Models (explicit) and the visual representations of the original image (implicit) to acquire accurate semantic prior. To extract degradation-independent structure prior, we introduce a Processor with RGB and FFT constraints to extract structure prior from the low-quality images, guiding the diffusion model and preventing the generation of unreasonable artifacts. Lastly, we employ a multi-level attention mechanism to integrate the acquired semantic and structure priors. The qualitative and quantitative results demonstrate that our method outperforms other state-of-the-art methods overall on both synthetic and real-world datasets.
           </p>
         </div>
       </div>
@@ -184,7 +183,7 @@
         <h2 class="title is-3">Method</h2>
         <div class="content has-text-justified">
           <div  style="text-align:center; vertical-align:middle">
-            <img src="./images/framework_2.png" width="100%">
+            <img src="./images/framework.png" width="100%">
           </div>
           <div align="center">
             <b>Overview of the architecture of SSP-IR. </b>
@@ -216,6 +215,7 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Visual Results</h2>
+        
         <h3 class="title is-4">Synthetic datasets</h3>
         <div class="content has-text-justified">
           <div  style="text-align:center; vertical-align:middle">
